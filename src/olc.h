@@ -132,10 +132,10 @@ extern	const	struct	olc_comm_type	social_olc_comm_table	[];*/
 
 struct olc_comm_type
 {
-	char *		nombre;
-	void *		argumento;
-	ED_FUN *	funcion;
-	const void *	parametro;
+	char *		number; /*nombre*/
+	void *		argument; /*argumento*/
+	ED_FUN *	function; /*funcion*/
+	const void *	parameter; /*parametro*/
 };
 
 

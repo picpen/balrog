@@ -69,44 +69,44 @@ bool show_version( CHAR_DATA *ch, char *argument )
  */
 const struct olc_help_type help_table[] =
 {
-    {	"area",		area_flags,	"Atributos de Area."		},
-    {	"room",		room_flags,	"Atributos de Cuartos."		},
-    {	"sector",	sector_flags,	"Tipos de Sector(terreno)."	},
-    {	"exit",		exit_flags,	"Tipos de Salidas."		},
-    {	"type",		type_flags,	"Tipos de Objetos."		},
-    {	"extra",	extra_flags,	"Atributos de Objetos."		},
+    {	"area",		area_flags,	"Attributes of Area."		},
+    {	"room",		room_flags,	"Attributes of Room."		},
+    {	"sector",	sector_flags,	"Type of Sector(terrain)."	},
+    {	"exit",		exit_flags,	"Type of Exit."		},
+    {	"type",		type_flags,	"Type of Object."		},
+    {	"extra",	extra_flags,	"Attributes of Objects."		},
     {	"wear",		wear_flags,	"Where to wear object."		},
-    {	"spec",		spec_table,	"Procedimientos especiales."	},
-    {	"sex",		sex_table,	"Sexos."			},
-    {	"act",		act_flags,	"Atributos de Mobs."		},
-    {	"affect",	affect_flags,	"Affects de Mobs."		},
-    {	"wear-loc",	wear_loc_flags,	"Donde un mob lleva objetos."	},
-    {	"spells",	NULL,		"Nombres de Spells."		},
-    {	"container",	container_flags,"Container status."		},
-    {	"armor",	ac_type,	"Ac para ataques diferentes."	},
-    {   "apply",	apply_flags,	"Tipos de Applys."		},
-    {	"form",		form_flags,	"Forma del cuerpo."		},
-    {	"part",		part_flags,	"Partes del cuerpo."		},
-    {	"imm",		imm_flags,	"Tipos de Inmunidad."		},
-    {	"res",		res_flags,	"Tipos de Resistencia."		},
-    {	"vuln",		vuln_flags,	"Tipos de Vulnerabilidad."	},
-    {	"off",		off_flags,	"Comportamiento ofensivo mob."	},
-    {	"size",		size_table,	"Tabla de tamanos."		},
-    {   "wclass",       weapon_class,   "Clases de Armas."		}, 
-    {   "wtype",        weapon_type2,   "Tipos especiales de Armas."	},
-    {	"portal",	portal_flags,	"Tipos de Portales."		},
-    {	"furniture",	furniture_flags,"Tipos de Muebles."		},
-    {	"liquid",	liq_table,	"Tipos de liquidos."		},
-    {	"damtype",	attack_table,	"Tipos de Armas."		},
-    {	"weapon",	attack_table,	NULL				},
-    {   "position",	position_table,	"Posiciones."			},
-    {	"mprog",	mprog_flags,	"Tipos de Mob Progs."		},
-    {	"apptype",	apply_types,	"Tipos de Applys (2)."		},
-    {	"target",	target_table,	"Objetivos de spells."		},
-    {	"damclass",	dam_classes,	"Clases de danos."		},
-    {	"log",		log_flags,	"Tipos de log."			},
-    {	"show",		show_flags,	"Tipos de comandos."		},
-    {	NULL,		NULL,		NULL				}
+    {	"spec",		spec_table,	"Special attacks." },
+    {	"sex",		sex_table,	"Sex."			},
+    {	"act",		act_flags,	"Attributes of Mobs."		},
+    {	"affect",	    affect_flags,	"Affects of Mobs."		},
+    {	"wear-loc",	    wear_loc_flags,	"Where mobs wear objects."	},
+    {	"spells",	    NULL,		"Name of Spells." },
+    {	"container",	container_flags, "Container status."	  },
+    {	"armor",	    ac_type,	    "Armor class." },
+    {   "apply",	    apply_flags,	"Types of Apply." },
+    {	"form",		    form_flags,	    "Types of Form." },
+    {	"part",		    part_flags,	    "Body parts." },
+    {	"imm",		    imm_flags,	    "Flags for Immunity." },
+    {	"res",		    res_flags,	    "Types of Resistances." },
+    {	"vuln",		    vuln_flags,	    "Types of Vulnerabilities." },
+    {	"off",		    off_flags,	    "Offensive attacks." },
+    {	"size",		    size_table,	    "Size." },
+    {   "wclass",       weapon_class,   "Weapon Class." },
+    {   "wtype",        weapon_type2,   "Weapon Types."	},
+    {	"portal",	    portal_flags,	"Types of Portal."		},
+    {	"furniture",	furniture_flags,"Type of Furniture." },
+    {	"liquid",	    liq_table,	"Type of liquid."		},
+    {	"damtype",	    attack_table,	"Type of damage."		},
+    {	"weapon",	    attack_table,	NULL				},
+    {   "position",  	position_table,	"Position."			},
+    {	"mprog",	    mprog_flags,	"Type of Mob Progs."		},
+    {	"apptype",	    apply_types,	"Type of Applys (2)."		},
+    {	"target",	    target_table,	"Target of spells."		},
+    {	"damclass",	    dam_classes,	"Damage Class."		},
+    {	"log",		    log_flags,	"log."			},
+    {	"show",		    show_flags,	"Show commands."		},
+    {	NULL,		    NULL,		NULL				             }
 };
 
 
@@ -243,8 +243,8 @@ bool show_help( CHAR_DATA *ch, char *argument )
 
 	send_to_char( "Syntax:  ? [command]\n\r\n\r", ch );
 	sprintf( buf, "%-9.9s   %-26.26s %-9.9s   %-26.26s\n\r",
-		"[comando]",	"[descripcion]",
-		"[comando]",	"[descripcion]" );
+		"[command]",	"[description]",
+		"[command]",	"[description]" );
 	send_to_char( buf, ch );
 
 	for (cnt = 0; help_table[cnt].command != NULL; cnt++)
@@ -570,7 +570,7 @@ AEDIT( aedit_create )
 
     if ( IS_NPC(ch) || ch->pcdata->security < 9 )
     {
-    	send_to_char( "Insuficiente seguridad para crear areas.\n\r", ch );
+    	send_to_char( "Insufficient security to create areas.\n\r", ch );
     	return FALSE;
     }
 
@@ -682,7 +682,7 @@ AEDIT( aedit_lowrange )
 	
 	if ( argument[0] == '\0' || !is_number(argument) )
 	{
-		send_to_char( "Sintaxis : lowrange [nivel-minimo]\n\r", ch );
+		send_to_char( "Syntax : lowrange [level-minimum]\n\r", ch );
 		return FALSE;
 	}
 	
@@ -690,19 +690,19 @@ AEDIT( aedit_lowrange )
 	
 	if ( low_r < 0 || low_r > MAX_LEVEL )
 	{
-		send_to_char( "Valores entre 0 y MAX_LEVEL solamente.\n\r", ch );
+		send_to_char( "Enter value of MAX_LEVEL only.\n\r", ch);
 		return FALSE;
 	}
 
 	if ( low_r > pArea->high_range )
 	{
-		send_to_char( "Argumento es mayor que high_range.\n\r", ch );
+		send_to_char( "Argument is higher than high_range.\n\r", ch);
 		return FALSE;
 	}
 
 	pArea->low_range = low_r;
 	
-	send_to_char( "Nivel minimo seteado.\n\r", ch );
+	send_to_char( "Low range set.\n\r", ch );
 	return TRUE;
 }
 
@@ -715,7 +715,7 @@ AEDIT( aedit_highrange )
 	
 	if ( argument[0] == '\0' || !is_number(argument) )
 	{
-		send_to_char( "Sintaxis : highrange [nivel-maximo]\n\r", ch );
+		send_to_char( "Syntax : highrange [level-maximum]\n\r", ch );
 		return FALSE;
 	}
 	
@@ -723,19 +723,19 @@ AEDIT( aedit_highrange )
 	
 	if ( high_r < 0 || high_r > MAX_LEVEL )
 	{
-		send_to_char( "Valores entre 0 y MAX_LEVEL solamente.\n\r", ch );
+		send_to_char( "Enter values 0 and MAX_LEVEL only.\n\r", ch );
 		return FALSE;
 	}
 
 	if ( high_r < pArea->low_range )
 	{
-		send_to_char( "Argumento es menor que low_range.\n\r", ch );
+		send_to_char( "Argument is less than low_range.\n\r", ch );
 		return FALSE;
 	}
 
 	pArea->high_range = high_r;
 	
-	send_to_char( "Nivel maximo seteado.\n\r", ch );
+	send_to_char( "Maximum level set.\n\r", ch );
 	return TRUE;
 }
 
@@ -1231,7 +1231,7 @@ bool change_exit( CHAR_DATA *ch, char *argument, int door )
 
 	if ( !pExit )
 	{
-		send_to_char("Salida no existe.\n\r",ch);
+		send_to_char("Exit doesn't exit.\n\r", ch);
 		return FALSE;
 	}
 
@@ -1312,7 +1312,7 @@ bool change_exit( CHAR_DATA *ch, char *argument, int door )
 				pToRoom->exit[rev] = NULL;
 			}
 			else
-				printf_to_char( ch, "Salida %d del cuarto %d no apunta hacia aqui, asi que no fue borrada.\n\r",
+				printf_to_char( ch, "Exit %d from the room %d is not aimed here, so there it was not deleted.\n\r",
 					rev, pToRoom->vnum );
 		}
 	}
@@ -1320,13 +1320,13 @@ bool change_exit( CHAR_DATA *ch, char *argument, int door )
 	/*
 	 * Remove this exit.
 	 */
-	printf_to_char( ch, "Salida %s del cuarto %d borrada.\n\r",
+	printf_to_char( ch, "Exit %s from room %d cleared.\n\r",
 		dir_name[door], pRoom->vnum );
 	free_exit( pRoom->exit[door] );
 	pRoom->exit[door] = NULL;
 
 	if (rDeleted)
-		printf_to_char( ch, "Salida %s del cuarto %d tambien fue borrada.\n\r",
+		printf_to_char( ch, "Exit %s from the room %d was also delete.\n\r",
 			dir_name[rev_dir[door]], pToRoom->vnum );
 
 	return TRUE;
@@ -1361,7 +1361,7 @@ bool change_exit( CHAR_DATA *ch, char *argument, int door )
 
 	if ( pExit )
 	{
-		send_to_char( "REdit : Salida ya existe.\n\r", ch );
+		send_to_char( "REdit : Exit already exist.\n\r", ch );
 		return FALSE;
 	}
 
@@ -1428,7 +1428,7 @@ bool change_exit( CHAR_DATA *ch, char *argument, int door )
 
 	if ( !IS_BUILDER(ch, target->area) )
 	{
-		send_to_char( "REdit: Destino en un area que no puedes editar.\n\r", ch );
+		send_to_char( "REdit: Destination in an area that you can't edit.\n\r", ch );
 		return FALSE;
 	}
 
@@ -1443,7 +1443,7 @@ bool change_exit( CHAR_DATA *ch, char *argument, int door )
 
 	if ( (pExit = target->exit[rev_dir[door]]) != NULL
 	&&    pExit->u1.to_room != pRoom )
-		printf_to_char( ch, "#BADVERTENCIA#b : la salida del cuarto %d no apunta hacia aqui.\n\r",
+		printf_to_char( ch, "The exits of the room %d are not leading here.\n\r",
 			target->vnum );
 
 	send_to_char( "One-way link established.\n\r", ch );
@@ -1463,7 +1463,7 @@ bool change_exit( CHAR_DATA *ch, char *argument, int door )
 
 	if ( (pExit = pRoom->exit[door]) == NULL )
 	{
-		send_to_char("Salida no existe.\n\r",ch);
+		send_to_char("Exit doesn't exist.\n\r", ch );
 		return FALSE;
 	}
 
@@ -1500,7 +1500,7 @@ bool change_exit( CHAR_DATA *ch, char *argument, int door )
 
 	if ( (pExit = pRoom->exit[door]) == NULL )
 	{
-		send_to_char("Salida no existe.\n\r",ch);
+		send_to_char("Exit doesn't exist.\n\r", ch );
    		return FALSE;
 	}
 
@@ -1523,7 +1523,7 @@ bool change_exit( CHAR_DATA *ch, char *argument, int door )
 	{
 	    if ( (pExit = pRoom->exit[door]) == NULL )
 	    {
-		send_to_char("Salida no existe.\n\r",ch);
+		send_to_char("Exit doesn't exist.\n\r",ch);
    		return FALSE;
 	    }
 
@@ -1656,8 +1656,8 @@ REDIT( redit_mreset )
     newmob = create_mobile( pMobIndex );
     char_to_room( newmob, pRoom );
 
-    sprintf( output, "%s (%d) fue cargado y anadido a los resets.\n\r"
-	"Habra un maximo de %d en esta area, y %d en el cuarto.\n\r",
+    sprintf( output, "%s (%d) was loaded and added to resets.\n\r"
+	"There will be a maximum of %d in this area, and %d in the room.\n\r",
 	capitalize( pMobIndex->short_descr ),
 	pMobIndex->vnum,
 	pReset->arg2,
@@ -1800,7 +1800,7 @@ REDIT( redit_oreset )
 	newobj = create_object( pObjIndex, number_fuzzy( olevel ) );
 	obj_to_room( newobj, pRoom );
 
-	sprintf( output, "%s (%d) ha sido cargado y anadido a los resets.\n\r",
+	sprintf( output, "%s (%d) has been loaded and added to the resets.\n\r",
 	    capitalize( pObjIndex->short_descr ),
 	    pObjIndex->vnum );
 	send_to_char( output, ch );
@@ -1824,8 +1824,8 @@ REDIT( redit_oreset )
 	newobj->cost = 0;
 	obj_to_obj( newobj, to_obj );
 
-	sprintf( output, "%s (%d) fue cargado dentro de "
-	    "%s (%d) y anadido a los resets.\n\r",
+	sprintf( output, "%s (%d) has been loaded"
+	    "%s (%d) and added to resets.\n\r",
 	    capitalize( newobj->short_descr ),
 	    newobj->pIndexData->vnum,
 	    to_obj->short_descr,
@@ -2409,15 +2409,15 @@ bool set_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *pObj, int value_num, char *a
 /* OLC		    do_help( ch, "liquids" );    */
 	            return FALSE;
 	        case 0:
-	            send_to_char( "Cantidad maxima de liquido seteada.\n\r\n\r", ch );
+	            send_to_char( "Maximum amount of liquid set.\n\r\n\r", ch );
 	            pObj->value[0] = atoi( argument );
 	            break;
 	        case 1:
-	            send_to_char( "Cantidad actual de liquido seteada.\n\r\n\r", ch );
+	            send_to_char( "Actual amount of liquid set.\n\r\n\r", ch );
 	            pObj->value[1] = atoi( argument );
 	            break;
 	        case 2:
-	            send_to_char( "Tipo de liquido seteado.\n\r\n\r", ch );
+	            send_to_char( "Type of liquid set.\n\r\n\r", ch );
 	            pObj->value[2] = ( liq_lookup( argument ) != -1 ?
 	            		       liq_lookup( argument ) : 0 );
 	            break;
@@ -2483,23 +2483,36 @@ OEDIT( oedit_show )
 		EDIT_OBJ(ch, pObj);
 	else
 	{
-		send_to_char( "Sintaxis : oshow [vnum]\n\r", ch );
+		send_to_char( "Syntax: oshow [vnum]\n\r",ch );
 		return FALSE;
 	}
     }
     else
     {
-    	pObj = get_obj_index(atoi(buf));
+    /*	pObj = get_obj_index(atoi(buf));
 
 	if ( !pObj )
 	{
-		send_to_char( "ERROR : Objeto inexistente.\n\r", ch );
+		send_to_char( "ERROR : Object doesn't exist.\n\r\", ch );
 		return FALSE;
-	}
+	}*/
+
+
+
+        pObj = get_obj_index(atoi(buf));
+
+        if ( !pObj )
+        {
+                send_to_char( "ERROR : Object doesn't exist.\n\r", ch );
+                return FALSE;
+        }
+
+
+
 
 	if ( !IS_BUILDER(ch, pObj->area) )
 	{
-		send_to_char( "ERROR : Objeto de un area que no puedes editar.\n\r", ch );
+		send_to_char( "ERROR : Object of an area you can't edit.\n\r", ch );
 		return FALSE;
 	}
     }
@@ -2861,7 +2874,7 @@ MEDIT( medit_show )
 		EDIT_MOB(ch, pMob);
 	else
 	{
-		send_to_char( "ERROR : debes especificar un vnum como argumento.\n\r", ch );
+		send_to_char( "ERROR : You must specify a VNUM as an argument.\n\r", ch );
 		return FALSE;
 	}
     }
@@ -2871,13 +2884,13 @@ MEDIT( medit_show )
 
 	if ( !pMob )
 	{
-		send_to_char( "ERROR : Mob inexistente.\n\r", ch );
+		send_to_char( "ERROR : Mob doesn't exist.\n\r", ch);
 		return FALSE;
 	}
 
 	if ( !IS_BUILDER(ch, pMob->area) )
 	{
-		send_to_char( "ERROR : Mob de un area que no puedes editar.\n\r", ch );
+		send_to_char( "ERROR : Mob from an area that you can't edit.\n\r", ch );
 		return FALSE;
 	}
     }
@@ -3069,8 +3082,8 @@ MEDIT( medit_group )
 
     if ( argument[0] == '\0' )
     {
-    	send_to_char( "Sintaxis: group [numero]\n\r", ch);
-    	send_to_char( "          group show [numero]\n\r", ch);
+    	send_to_char( "Syntax: group [number]\n\r", ch);
+    	send_to_char( "          group show [number]\n\r", ch);
     	return FALSE;
     }
 
@@ -3087,7 +3100,7 @@ MEDIT( medit_group )
     {
 	if (atoi(argument) == 0)
 	{
-		send_to_char( "Estas loco?\n\r", ch);
+		send_to_char( "Are you crazy? \n\r", ch );
 		return FALSE;
 	}
 
@@ -3107,7 +3120,7 @@ MEDIT( medit_group )
 	if (found)
 		page_to_char( buf_string(buffer), ch );
 	else
-		send_to_char( "No existen mobs en ese grupo.\n\r", ch );
+		send_to_char( "Mob doesn't exist in this group.\n\r", ch );
 
 	free_buf( buffer );
     }
@@ -3286,7 +3299,7 @@ void showresets(CHAR_DATA *ch, BUFFER *buf, AREA_DATA *pArea, MOB_INDEX_DATA *mo
 						pLastMob = get_mob_index(lastmob);
 						if ( pLastMob == NULL )
 						{
-							bugf( "Showresets : reset invalido (mob %d) en cuarto %d", lastmob, room->vnum );
+							bugf( "Showresets : reset invalid (mob %d) in room %d", lastmob, room->vnum );
 							return;
 						}
 						if ( mob && lastmob == mob->vnum )
@@ -3314,7 +3327,7 @@ void listobjreset(CHAR_DATA *ch, BUFFER *buf, AREA_DATA *pArea)
 	OBJ_INDEX_DATA *obj;
 	int key;
 
-	add_buf(buf, "#UVnum  Nombre          Room  En mob#u\n\r");
+	add_buf(buf, "#UVnum  Name          Room  En mob#u\n\r");
 
 	for ( key = 0; key < MAX_KEY_HASH; ++key )
 		for ( obj = obj_index_hash[key]; obj; obj = obj->next )
@@ -3327,7 +3340,7 @@ void listmobreset(CHAR_DATA *ch, BUFFER *buf, AREA_DATA *pArea)
 	MOB_INDEX_DATA *mob;
 	int key;
 
-	add_buf(buf, "#UVnum  Nombre          Room #u\n\r");
+	add_buf(buf, "#UVnum  Name          Room #u\n\r");
 
 	for ( key = 0; key < MAX_KEY_HASH; ++key )
 		for ( mob = mob_index_hash[key]; mob; mob = mob->next )
@@ -3347,7 +3360,7 @@ REDIT( redit_listreset )
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : listreset [obj/mob]\n\r", ch );
+		send_to_char( "Syntax : listreset [obj/mob]\n\r", ch );
 		return FALSE;
 	}
 
@@ -3359,7 +3372,7 @@ REDIT( redit_listreset )
 		listmobreset(ch,buf,pArea);
 	else
 	{
-		send_to_char( "AEdit : Argumento invalido.\n\r", ch );
+		send_to_char( "AEdit : Argument Invalid\n\r", ch );
 		free_buf(buf);
 		return FALSE;
 	}
@@ -3381,7 +3394,7 @@ REDIT( redit_checkobj )
 	for ( key = 0; key < MAX_KEY_HASH; ++key )
 		for ( obj = obj_index_hash[key]; obj; obj = obj->next )
 			if ( obj->reset_num == 0 && (fAll || obj->area == room->area) )
-				printf_to_char( ch, "Obj #B%-5.5d#b [%-20.20s] no esta reseteado.\n\r", obj->vnum, obj->name );
+				printf_to_char( ch, "Obj #B%-5.5d#b [%-20.20s] There isn't a reset.\n\r", obj->vnum, obj->name );
 
 	return FALSE;
 }
@@ -3397,7 +3410,7 @@ REDIT( redit_checkrooms )
 	else
 	if ( !IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : checkrooms\n\r"
+		send_to_char( "Syntax: checkrooms\n\r"
 			      "           checkrooms all\n\r", ch );
 		return FALSE;
 	}
@@ -3407,7 +3420,7 @@ REDIT( redit_checkrooms )
 	for ( iHash = 0; iHash < MAX_KEY_HASH; iHash++ )
 		for ( room = room_index_hash[iHash]; room; room = room->next )
 			if ( room->reset_num == 0 && (fAll || room->area == thisroom->area) )
-				printf_to_char( ch, "Cuarto %d no esta linkeado.\n\r", room->vnum );
+				printf_to_char( ch, "Room %d is not linked.\n\r", room->vnum );
 
 	return FALSE;
 }
@@ -3424,7 +3437,7 @@ REDIT( redit_checkmob )
 	for ( key = 0; key < MAX_KEY_HASH; ++key )
 		for ( mob = mob_index_hash[key]; mob; mob = mob->next )
 			if ( mob->reset_num == 0 && (fAll || mob->area == room->area) )
-				printf_to_char( ch, "Mob #B%-5.5d#b [%-20.20s] no esta reseteado.\n\r", mob->vnum, mob->player_name );
+				printf_to_char( ch, "Mob #B%-5.5d#b [%-20.20s] No resets.\n\r", mob->vnum, mob->player_name );
 
 	return FALSE;
 }
@@ -3438,7 +3451,7 @@ REDIT( redit_copy )
 
 	if ( IS_NULLSTR(argument) || !is_number(argument) )
 	{
-		send_to_char( "Sintaxis : copy [vnum]\n\r", ch );
+		send_to_char( "Syntax : copy [vnum]\n\r", ch );
 		return FALSE;
 	}
 
@@ -3446,7 +3459,7 @@ REDIT( redit_copy )
 
 	if ( vnum < 1 || vnum >= MAX_VNUM)
 	{
-		send_to_char( "REdit : argumento invalido.\n\r", ch );
+		send_to_char( "REdit : Argument Invalid.\n\r", ch );
 		return FALSE;
 	}
 
@@ -3454,7 +3467,7 @@ REDIT( redit_copy )
 
 	if ( !that || !IS_BUILDER(ch, that->area) || that == this )
 	{
-		send_to_char( "REdit : cuarto inexistente o incopiable.\n\r", ch );
+		send_to_char( "REdit : Room non-existent.\n\r", ch );
 		return FALSE;
 	}
 
@@ -3472,7 +3485,7 @@ REDIT( redit_copy )
 	this->heal_rate		= that->heal_rate;
 	this->mana_rate		= that->mana_rate;
 
-	send_to_char( "Ok. Cuarto copiado.\n\r", ch );
+	send_to_char( "Ok. Room copied.\n\r", ch );
 	return TRUE;
 }
 
@@ -3485,25 +3498,25 @@ MEDIT(medit_copy)
 
 	if ( IS_NULLSTR(argument) )
 	{
-		send_to_char( "Sintaxis : copiar [vnum]\n\r", ch );
+		send_to_char( "Syntax : copy [vnum]\n\r", ch );
 		return FALSE;
 	}
 
 	if ( !is_number(argument) || (vnum = atoi(argument)) < 0 )
 	{
-		send_to_char( "ERROR : Argumento invalido.\n\r", ch );
+		send_to_char( "ERROR : Argument invalid.\n\r", ch );
 		return FALSE;
 	}
 
 	if ( (mob2 = get_mob_index(vnum)) == NULL )
 	{
-		send_to_char( "ERROR : Mob inexistente.\n\r", ch );
+		send_to_char( "ERROR : Mob doesn't exist.n\r", ch );
 		return FALSE;
 	}
 
 	if ( !IS_BUILDER(ch, mob2->area) )
 	{
-		send_to_char( "ERROR : Mob de un area que no puedes editar.\n\r", ch );
+		send_to_char( "ERROR : Mob from an area you can't edit.\n\r", ch );
 		return FALSE;
 	}
 
@@ -3553,7 +3566,7 @@ ED_FUN_DEC(ed_line_string)
 
 	if (IS_NULLSTR(argument))
 	{
-		sprintf( buf, "Sintaxis : %s <cadena>\n\r", n_fun );
+		sprintf( buf, "Syntax : %s <string>\n\r", n_fun );
 		send_to_char( buf, ch );
 		return FALSE;
 	}
@@ -3589,13 +3602,13 @@ bool numedit( char * n_fun, CHAR_DATA *ch, char *argument, void * arg, sh_int ti
 
 	if ( IS_NULLSTR(argument) )
 	{
-		printf_to_char( ch, "Sintaxis : %s [numero]\n\r", n_fun );
+		printf_to_char( ch, "Syntax : %s [number]\n\r", n_fun );
 		return FALSE;
 	}
 
 	if ( !is_number(argument) )
 	{
-		send_to_char( "ERROR : Argumento debe ser un numero.\n\r", ch );
+		send_to_char( "ERROR : Argument must be a number.\n\r", ch );
 		return FALSE;
 	}
 
@@ -3603,13 +3616,13 @@ bool numedit( char * n_fun, CHAR_DATA *ch, char *argument, void * arg, sh_int ti
 
 	if ( min != -1 && temp < min )
 	{
-		printf_to_char( ch, "ERROR : Numero debe ser mayor que %d.\n\r", min );
+		printf_to_char( ch, "ERROR : number must be greater than %d.\n\r", min);
 		return FALSE;
 	}
 
 	if ( max != -1 && temp > max )
 	{
-		printf_to_char( ch, "ERROR : Numero debe ser menor que %d.\n\r", max );
+		printf_to_char( ch, "ERROR : Number must be less than %d.\n\r", max );
 		return FALSE;
 	}
 
@@ -3660,7 +3673,7 @@ ED_FUN_DEC(ed_desc)
 	return TRUE;
     }
 
-    send_to_char( "Sintaxis : desc\n\r", ch );
+    send_to_char( "Syntax : desc\n\r", ch );
 
     return FALSE;
 }
@@ -3669,7 +3682,7 @@ ED_FUN_DEC(ed_bool)
 {
 	if ( emptystring(argument) )
 	{
-		printf_to_char( ch, "Sintaxis : %s [true/false]\n\r", n_fun );
+		printf_to_char( ch, "Syntax : %s [true/false]\n\r", n_fun );
 		return FALSE;
 	}
 
@@ -3680,7 +3693,7 @@ ED_FUN_DEC(ed_bool)
 		*(bool *) arg = FALSE;
 	else
 	{
-		send_to_char( "ERROR : argumento invalido.\n\r", ch );
+		send_to_char( "ERROR : Argument invalid.\n\r", ch );
 		return FALSE;
 	}
 
@@ -3705,7 +3718,7 @@ ED_FUN_DEC(ed_flag_toggle)
 	}
     }
 
-    printf_to_char( ch, "Sintaxis : %s [flags]\n\r", n_fun );
+    printf_to_char( ch, "Syntax : %s [flags]\n\r", n_fun );
 
     return FALSE;
 }
@@ -3720,14 +3733,14 @@ ED_FUN_DEC(ed_flag_set_long)
 	{
 	    *(long *) arg = value;
 
-	    printf_to_char( ch, "%c%s flag seteada.\n\r",
+	    printf_to_char( ch, "%c%s flag set.\n\r",
 	    	toupper(n_fun[0]),
 	    	&n_fun[1] );
 	    return TRUE;
 	}
     }
 
-    printf_to_char( ch, "Sintaxis : %s [flags]\n\r", n_fun );
+    printf_to_char( ch, "Syntax : %s [flags]\n\r", n_fun );
 
     return FALSE;
 }
@@ -3742,14 +3755,14 @@ ED_FUN_DEC(ed_flag_set_sh)
 	{
 	    *(sh_int *) arg = value;
 
-	    printf_to_char( ch, "%c%s flag seteada.\n\r",
+	    printf_to_char( ch, "%c%s flag set.\n\r",
 	    	toupper(n_fun[0]),
 	    	&n_fun[1] );
 	    return TRUE;
 	}
     }
 
-    printf_to_char( ch, "Sintaxis : %s [flags]\n\r", n_fun );
+    printf_to_char( ch, "Syntax : %s [flags]\n\r", n_fun );
 
     return FALSE;
 }
@@ -3765,9 +3778,9 @@ ED_FUN_DEC( ed_shop )
 
     if ( command[0] == '\0' )
     {
-	send_to_char( "Sintaxis : shop hours [abrir] [cerrar]\n\r", ch );
-	send_to_char( "           shop profit [%% compra] [%% venta]\n\r", ch );
-	send_to_char( "           shop type [0-4] [tipo obj]\n\r", ch );
+	send_to_char( "Syntax : shop hours [open] [open]\n\r", ch );
+	send_to_char( "           shop profit [%% buy] [%% sale]\n\r", ch );
+	send_to_char( "           shop type [0-4] [type obj]\n\r", ch );
 	send_to_char( "           shop type [0-4] none\n\r", ch );
 	send_to_char( "           shop assign\n\r", ch );
 	send_to_char( "           shop remove\n\r", ch );
@@ -3780,20 +3793,20 @@ ED_FUN_DEC( ed_shop )
 	if ( arg1[0] == '\0' || !is_number( arg1 )
 	|| argument[0] == '\0' || !is_number( argument ) )
 	{
-	    send_to_char( "Sintaxis : shop hours [abrir] [cerrar]\n\r", ch );
+	    send_to_char( "Syntax : shop hours [open] [closed]\n\r", ch );
 	    return FALSE;
 	}
 
 	if ( !pMob->pShop )
 	{
-	    send_to_char( "ERROR : Debes crear un shop primero (shop assign).\n\r", ch );
+	    send_to_char( "ERROR : You must first create a shop (shop assign).\n\r", ch );
 	    return FALSE;
 	}
 
 	pMob->pShop->open_hour = atoi( arg1 );
 	pMob->pShop->close_hour = atoi( argument );
 
-	send_to_char( "Horas seteadas.\n\r", ch);
+	send_to_char( "Hours set.\n\r", ch);
 	return TRUE;
     }
 
@@ -3802,20 +3815,20 @@ ED_FUN_DEC( ed_shop )
 	if ( arg1[0] == '\0' || !is_number( arg1 )
 	|| argument[0] == '\0' || !is_number( argument ) )
 	{
-	    send_to_char( "Sintaxis : shop profit [%% compra] [%% venta]\n\r", ch );
+	    send_to_char( "Syntax : shop profit [%% buy] [%% sale]\n\r", ch );
 	    return FALSE;
 	}
 
 	if ( !pMob->pShop )
 	{
-	    send_to_char( "ERROR : Debes crear un shop primero (shop assign).\n\r", ch );
+	    send_to_char( "ERROR : You should create a shop first (shop assign).\n\r", ch );
 	    return FALSE;
 	}
 
 	pMob->pShop->profit_buy     = atoi( arg1 );
 	pMob->pShop->profit_sell    = atoi( argument );
 
-	send_to_char( "Shop profit seteado.\n\r", ch);
+	send_to_char( "Shop profit set.\n\r", ch);
 	return TRUE;
     }
 
@@ -3840,7 +3853,7 @@ ED_FUN_DEC( ed_shop )
 
 	if ( !pMob->pShop )
 	{
-	    send_to_char( "MEdit:  Debes crear un shop primero (shop assign).\n\r", ch );
+	    send_to_char( "MEdit:  You should create a shop first (shop assign).\n\r", ch );
 	    return FALSE;
 	}
 
@@ -3936,7 +3949,7 @@ ED_FUN_DEC( ed_new_mob )
 
     if ( argument[0] == '\0' || value == 0 )
     {
-	send_to_char( "Sintaxis : medit create [vnum]\n\r", ch );
+	send_to_char( "Syntax : medit create [vnum]\n\r", ch );
 	return FALSE;
     }
 
@@ -3944,19 +3957,19 @@ ED_FUN_DEC( ed_new_mob )
 
     if ( !pArea )
     {
-	send_to_char( "MEdit : ese vnum no esta asignado a ningun area.\n\r", ch );
+	send_to_char( "MEdit : Vnum not assigned to any area\n\r", ch );
 	return FALSE;
     }
 
     if ( !IS_BUILDER( ch, pArea ) )
     {
-	send_to_char( "MEdit : ese vnum es de un area que no puedes editar.\n\r", ch );
+	send_to_char( "MEdit : Vnum from an area that does not exist.\n\r", ch );
 	return FALSE;
     }
 
     if ( get_mob_index( value ) )
     {
-	send_to_char( "MEdit : un mob con ese vnum ya existe.\n\r", ch );
+	send_to_char( "MEdit : A mob with this vnum already exist.\n\r", ch );
 	return FALSE;
     }
 
@@ -3977,7 +3990,7 @@ ED_FUN_DEC( ed_new_mob )
     set_editor(ch->desc, ED_MOBILE, pMob);
 /*    ch->desc->pEdit		= (void *)pMob; */
 
-    send_to_char( "Mob creado.\n\r", ch );
+    send_to_char( "Mob created.\n\r", ch );
 
     return TRUE;
 }
@@ -3994,7 +4007,7 @@ ED_FUN_DEC( ed_gamespec )
 
     if ( argument[0] == '\0' )
     {
-	printf_to_char( ch, "Sintaxis : %s [%s]\n\r",
+	printf_to_char( ch, "Syntax : %s [%s]\n\r",
 		n_fun,
 		n_fun );
 	return FALSE;
@@ -4003,7 +4016,7 @@ ED_FUN_DEC( ed_gamespec )
     if ( !str_cmp( argument, "none" ) )
     {
 	*spec = NULL;
-	printf_to_char( ch, "%s eliminado.\n\r", n_fun );
+	printf_to_char( ch, "%s removed.\n\r", n_fun );
         return TRUE;
     }
 
@@ -4015,7 +4028,7 @@ ED_FUN_DEC( ed_gamespec )
 	}
 	else
 	{
-		send_to_char( "ERROR : Spec inexistente.\n\r", ch );
+		send_to_char( "ERROR : Spec doesn't exist.\n\r", ch );
 		return FALSE;
 	}
 
@@ -4029,7 +4042,7 @@ ED_FUN_DEC( ed_objrecval )
 	switch(pObj->item_type)
 	{
 		default:
-		send_to_char( "No puedes recalcular este objeto.\n\r", ch );
+		send_to_char( "You cannot recalculate this object.\n\r", ch );
 		return FALSE;
 
 		case ITEM_WEAPON:
@@ -4048,7 +4061,7 @@ ED_FUN_DEC( ed_recval )
 
     if ( pMob->level < 1 || pMob->level > 60 )
     {
-	send_to_char( "Nivel del mob debe ser entre 1 y 60.\n\r", ch );
+	send_to_char( "Level of the mob is between 1 and 60.\n\r", ch );
 	return FALSE;
     }
 
@@ -4069,20 +4082,20 @@ bool templookup( char * n_fun, CHAR_DATA *ch, char *argument, void *arg, const v
 	if ( ( value = ((*blah) (argument)) ) > temp )
 	{
 	    *(sh_int *) arg = value;
-	    printf_to_char( ch, "%s seteado.\n\r",
+	    printf_to_char( ch, "%s set.\n\r",
 	    	n_fun );
 	    return TRUE;
 	}
 	else
 	{
-		printf_to_char( ch, "ERROR : %s inexistente.\n\r",
+		printf_to_char( ch, "ERROR : %s doesn't exist.\n\r",
 			n_fun );
 		return FALSE;
 	}
     }
 
-    printf_to_char( ch, "Sintaxis : %s [%s]\n\r"
-    			"Escribe '? %s' para los posibles argumentos.\n\r",
+    printf_to_char( ch, "Syntax : %s [%s]\n\r"
+    			"Escribe '? %s' possible arguments for.\n\r",
     			n_fun,
     			n_fun,
     			n_fun );
@@ -4196,7 +4209,7 @@ ED_FUN_DEC(ed_dice)
     arreglo[DICE_TYPE]		= atoi( type  );
     arreglo[DICE_BONUS]		= atoi( bonus );
 
-    printf_to_char( ch, "%s seteado.\n\r",
+    printf_to_char( ch, "%s set.\n\r",
     	n_fun );
 
     return TRUE;
@@ -4224,7 +4237,7 @@ ED_FUN_DEC( ed_addprog )
   switch(ch->desc->editor)
   {
   	case ED_MOBILE:	flagtable = mprog_flags;	break;
-  	default:	send_to_char( "ERROR : Editor invalido.\n\r", ch );
+  	default:	send_to_char( "ERROR : Editor invalid.\n\r", ch );
   			return FALSE;
   }
 
@@ -4384,7 +4397,7 @@ ED_FUN_DEC( ed_ed )
 
 	if ( !ed )
 	{
-	    send_to_char( "ERROR : Descripcion Extra no encontrada.\n\r", ch );
+	    send_to_char( "ERROR : Extra description not found.\n\r", ch );
 	    return FALSE;
 	}
 
@@ -4412,7 +4425,7 @@ ED_FUN_DEC( ed_ed )
 
 	if ( !ed )
 	{
-	    send_to_char( "ERROR : Descripcion Extra no encontrada.\n\r", ch );
+	    send_to_char( "ERROR : Extra description not found.\n\r", ch );
 	    return FALSE;
 	}
 
@@ -4446,7 +4459,7 @@ ED_FUN_DEC( ed_ed )
 
 	if ( !ed )
 	{
-                send_to_char( "ERROR : Descripcion Extra no encontrada.\n\r", ch );
+                send_to_char( "ERROR : Extra description not found.\n\r", ch );
                 return FALSE;
 	}
 
@@ -4462,7 +4475,7 @@ ED_FUN_DEC( ed_ed )
 
 	if ( keyword[0] == '\0' )
 	{
-	    send_to_char( "Syntax:  ed rename [antigua] [nueva]\n\r", ch );
+	    send_to_char( "Syntax:  ed rename [old] [new]\n\r", ch );
 	    return FALSE;
 	}
 
@@ -4475,14 +4488,14 @@ ED_FUN_DEC( ed_ed )
 
 	if ( !ed )
 	{
-                send_to_char( "ERROR : Descripcion Extra no encontrada.\n\r", ch );
+                send_to_char( "ERROR : Extra description not found.\n\r", ch );
                 return FALSE;
 	}
 
 	free_string(ed->keyword);
 	ed->keyword = str_dup( argument );
 
-	send_to_char( "Descripcion extra renombrada.\n\r", ch );
+	send_to_char( "Extra description renamed.\n\r", ch );
 	return TRUE;
     }
 
@@ -4555,7 +4568,7 @@ ED_FUN_DEC( ed_delaffect )
 
     if ( !( pAf = *pNaf ) )
     {
-	send_to_char( "OEdit:  Non-existant affect.\n\r", ch );
+	send_to_char( "OEdit:  Non-existent affect.\n\r", ch );
 	return FALSE;
     }
 
@@ -4674,7 +4687,7 @@ ED_FUN_DEC( ed_new_obj )
 
     if ( !pArea )
     {
-	send_to_char( "OEdit:  That vnum is not assigned an area.\n\r", ch );
+	send_to_char( "OEdit:  That vnum is not assigned an object.\n\r", ch );
 	return FALSE;
     }
 
@@ -4787,7 +4800,7 @@ ED_FUN_DEC( ed_olist )
 
     if ( blarg[0] == '\0' )
     {
-	send_to_char( "Sintaxis : olist <all/name/item_type>\n\r", ch );
+	send_to_char( "Syntax : olist <all/name/item_type>\n\r", ch );
 	return FALSE;
     }
 
@@ -4835,7 +4848,7 @@ REDIT( redit_limpiar )
 
 	if ( !IS_NULLSTR( argument ) )
 	{
-		send_to_char( "Sintaxis : limpiar\n\r", ch );
+		send_to_char( "Syntax : limpiar<purge>\n\r", ch );
 		return FALSE;
 	}
 

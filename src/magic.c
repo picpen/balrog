@@ -2788,7 +2788,7 @@ void spell_floating_disc( int sn, int level,CHAR_DATA *ch,void *vo,int target )
     disc->timer		= ch->level * 2 - number_range(0,level / 2); 
 
     act("$n has created a floating black disc.",ch,NULL,NULL,TO_ROOM);
-    send_to_char("You create a floating disc.\n\r",ch);
+    send_to_char("You create a floating black disc.\n\r",ch);
     obj_to_char(disc,ch);
     wear_obj(ch,disc,TRUE);
     return;
@@ -3324,8 +3324,8 @@ void spell_identify( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	    case(WEAPON_EXOTIC) : send_to_char("exotic.\n\r",ch);	break;
 	    case(WEAPON_SWORD)  : send_to_char("sword.\n\r",ch);	break;	
 	    case(WEAPON_DAGGER) : send_to_char("dagger.\n\r",ch);	break;
-	    case(WEAPON_SPEAR)	: send_to_char("spear/staff.\n\r",ch);	break;
-	    case(WEAPON_MACE) 	: send_to_char("mace/club.\n\r",ch);	break;
+	    case(WEAPON_SPEAR)	: send_to_char("spear.\n\r",ch);	break;
+	    case(WEAPON_MACE) 	: send_to_char("mace.\n\r",ch);	break;
 	    case(WEAPON_AXE)	: send_to_char("axe.\n\r",ch);		break;
 	    case(WEAPON_FLAIL)	: send_to_char("flail.\n\r",ch);	break;
 	    case(WEAPON_WHIP)	: send_to_char("whip.\n\r",ch);		break;
@@ -3611,16 +3611,17 @@ void spell_locate_object( int sn, int level, CHAR_DATA *ch, void *vo,int target)
 
 	if ( in_obj->carried_by != NULL && can_see(ch,in_obj->carried_by))
 	{
-	    sprintf( buf, "one is carried by %s\n\r",
+	    sprintf( buf, "One is being carried by %s\n\r" ,
 		PERS(in_obj->carried_by, ch) );
+	    
 	}
 	else
 	{
 	    if (IS_IMMORTAL(ch) && in_obj->in_room != NULL)
-		sprintf( buf, "one is in %s [Room %d]\n\r",
+		sprintf( buf, "One is being carried by %s [Room %d]\n\r",
 		    in_obj->in_room->name, in_obj->in_room->vnum);
 	    else 
-	    	sprintf( buf, "one is in %s\n\r",
+	    	sprintf( buf, "One is being carried by %s\n\r",
 		    in_obj->in_room == NULL
 		    	? "somewhere" : in_obj->in_room->name );
 	}

@@ -192,6 +192,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Sex  %d\n",	ch->sex			);
     fprintf( fp, "Cla  %d\n",	ch->class		);
     fprintf( fp, "Levl %d\n",	ch->level		);
+    fprintf( fp, "Hmtown %d\n",	ch->hometown		);
     if (ch->trust != 0)
 	fprintf( fp, "Tru  %d\n",	ch->trust	);
     fprintf( fp, "Sec  %d\n",    ch->pcdata->security	);	/* OLC */
@@ -684,6 +685,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->pcdata->pwd			= str_dup( "" );
     ch->pcdata->bamfin			= str_dup( "" );
     ch->pcdata->bamfout			= str_dup( "" );
+    ch->hometown			= str_dup( "" );
     ch->pcdata->title			= str_dup( "" );
     for (stat =0; stat < MAX_STATS; stat++)
 	ch->perm_stat[stat]		= 13;
@@ -1268,6 +1270,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	case 'H':
 	    KEY( "Hitroll",	ch->hitroll,		fread_number( fp ) );
 	    KEY( "Hit",		ch->hitroll,		fread_number( fp ) );
+	    KEY( "Hmtown",	ch->hometown,		fread_number( fp ) );
 
 	    if ( !str_cmp( word, "HpManaMove" ) || !str_cmp(word,"HMV"))
 	    {

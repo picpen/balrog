@@ -42,12 +42,12 @@ const struct clan_type clan_table[MAX_CLAN] =
     /* independent should be FALSE if is a real clan */
     {	"",		"",		ROOM_VNUM_ALTAR,	TRUE	},
     {	"loner",	"[LONER] ",	ROOM_VNUM_ALTAR,	TRUE	},
-    {	"hunter",		"[{RHUNTER{x] ", ROOM_VNUM_ALTAR,	TRUE	},
+    {	"hunter",	"[{rHUNTER{x] ", ROOM_VNUM_ALTAR,	TRUE	},
     {   "warlord",      "[{YWARLORD{x] ", ROOM_VNUM_ALTAR,	FALSE   },
     {   "enforcer",	"[{WENFORCER{x] ", ROOM_VNUM_ALTAR,    FALSE   },
     {   "tyrant",	"[{DTYRANT{x] ",  ROOM_VNUM_ALTAR,	FALSE	},
     {   "occultist",	"[{BOCCULTIST{x] ", ROOM_VNUM_ALTAR,	FALSE	},
-    {	"crusader",	"[{BCRUSADER{x] ", ROOM_VNUM_ALTAR,	FALSE	},
+    {	"crusader",	"[{cCRUSADER{x] ", ROOM_VNUM_ALTAR,	FALSE	},
 };
 
 /* for position */
@@ -939,3 +939,11 @@ const struct flag_type stat_table[] =
 	{	"con",		STAT_CON,	TRUE	},
 	{	NULL,		0,		TRUE	}
 };
+
+const struct hometown_type hometown_table [] =
+{
+/*	{	"name",	recall,	school, morgue,	death	},	*/
+	{	"Voldorm", 9641, 3700, 9641, 9641	},
+	{	"Midgaard", 3001, 3700, 3001, 3001	},
+	{	NULL,	3001, 3001, 3001, 3001		}
+}; 

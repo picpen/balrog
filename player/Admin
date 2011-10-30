@@ -1,32 +1,35 @@
 #PLAYER
 Name Admin~
 Id   1315535362
-LogO 1319595958
+LogO 1319922338
 Vers 5
 Prom <%hhp %mm %vmv> ~
 Race human~
 Sex  1
 Cla  0
 Levl 60
+Hmtown -21040
 Sec  9
-Plyd 32380
+Plyd 34001
 Not  1316162430 0 0 0 0
 Scro 22
-Room 3554
-HMV  10000 10000 406 406 454 454
+Room 3015
+HMV  9893 10000 406 406 452 454
 Gold 2
-Silv 985
+Silv 1183
 Exp  60000
-Act  DFQTZ
+Act  DFQT
 Comm NO
 Pos  8
-Prac 4
+Prac 3
 Trai 62
 Save  -1
-Alig  -3
-ACs 96 96 96 99
-Attr 13 16 13 13 13
-AMod 0 0 0 0 0
+Alig  -4
+Hit   6
+Dam   3
+ACs 11 11 11 77
+Attr 13 25 25 13 13
+AMod 2 0 0 2 2
 Pass Ad4O69cwrPVg.~
 Titl  the Implementor~
 Pnts 40
@@ -77,7 +80,7 @@ Sk 1 'infravision'
 Sk 1 'invisibility'
 Sk 1 'know alignment'
 Sk 1 'lightning bolt'
-Sk 1 'locate object'
+Sk 75 'locate object'
 Sk 1 'magic missile'
 Sk 1 'mass invis'
 Sk 1 'nexus'
@@ -133,8 +136,64 @@ End
 Vnum 3703
 Nest 0
 Cond 0
-Wear 5
+Wear -1
 Cost 0
+End
+
+#O
+Vnum 5203
+Nest 0
+Cond 0
+Wear 10
+Cost 2700
+End
+
+#O
+Vnum 5206
+Nest 0
+Cond 0
+Wear 13
+Cost 5200
+End
+
+#O
+Vnum 5205
+Nest 0
+Cond 0
+Wear 7
+Cost 3100
+End
+
+#O
+Vnum 5204
+Nest 0
+Cond 0
+Wear 8
+Cost 3100
+End
+
+#O
+Vnum 5202
+Nest 0
+Cond 0
+Wear 9
+Cost 2700
+End
+
+#O
+Vnum 5201
+Nest 0
+Cond 0
+Wear 6
+Cost 3400
+End
+
+#O
+Vnum 5200
+Nest 0
+Cond 0
+Wear 5
+Cost 7600
 End
 
 #END
