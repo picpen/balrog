@@ -1,4 +1,4 @@
-/***************************************************************************
+/**************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
  *                                                                         *
@@ -412,13 +412,13 @@ void do_open( CHAR_DATA *ch, char *argument )
 	    { send_to_char( "It's already open.\n\r",      ch ); return; }
 	if (  IS_SET(pexit->exit_info, EX_LOCKED) )
 	    { send_to_char( "The door is locked.\n\r",            ch ); return; }
-
 	REMOVE_BIT(pexit->exit_info, EX_CLOSED);
 	act( "$n opens the $d.", ch, NULL, pexit->keyword, TO_ROOM );
+ 
 	act ("You open the $d.", ch,obj,NULL,TO_CHAR);
 
 /* send_to_char( "You open the door.\n\r",)*/
-
+ 
 	/* open the other side */
 	if ( ( to_room   = pexit->u1.to_room            ) != NULL
 	&&   ( pexit_rev = to_room->exit[rev_dir[door]] ) != NULL
@@ -427,7 +427,7 @@ void do_open( CHAR_DATA *ch, char *argument )
 	    CHAR_DATA *rch;
 
 	    REMOVE_BIT( pexit_rev->exit_info, EX_CLOSED );
-	    for ( rch = to_room->people; rch != NULL; rch = rch->next_in_room )
+	    for ( rch = to_room->people; rch != NULL; rch = rch->next_in_room );
 		act( "The $d opens.", rch, NULL, pexit_rev->keyword, TO_CHAR );
 	}
     }
@@ -1430,7 +1430,7 @@ void do_recall( CHAR_DATA *ch, char *argument )
   
     act( "$n vanishes!", ch, 0, 0, TO_ROOM );
 
-    if ( ( location = get_room_index( ROOM_VNUM_TEMPLE ) ) == NULL )
+    if ( ( location = get_room_index( hometown_table[ch->hometown].recall ) ) == NULL )
     {
 	send_to_char( "You are completely lost.\n\r", ch );
 	return;

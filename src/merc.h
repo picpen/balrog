@@ -407,7 +407,7 @@ struct	weather_data
 #define CON_READ_IMOTD			13
 #define CON_READ_MOTD			14
 #define CON_BREAK_CONNECT		15
-
+#define CON_GET_HOMETOWN		16
 
 
 /*
@@ -1677,7 +1677,7 @@ struct	char_data
     sh_int		dam_type;
     sh_int		start_pos;
     sh_int		default_pos;
-
+    sh_int		hometown;
     sh_int		mprog_delay;
 };
 
@@ -2760,3 +2760,16 @@ extern		char			str_empty       [1];
 extern		MOB_INDEX_DATA *	mob_index_hash  [MAX_KEY_HASH];
 extern		OBJ_INDEX_DATA *	obj_index_hash  [MAX_KEY_HASH];
 extern		ROOM_INDEX_DATA *	room_index_hash [MAX_KEY_HASH];
+
+struct	hometown_type
+
+{
+	char	*name;
+	int	recall;
+	int	school;
+	int	morgue;
+	int	death;
+};
+
+extern const struct hometown_type	hometown_table[];
+int get_hometown	args( ( char *argument ) );

@@ -1992,7 +1992,34 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	wiznet("Newbie alert!  $N sighted.",ch,NULL,WIZ_NEWBIE,0,0);
         wiznet(log_buf,NULL,NULL,WIZ_SITES,0,get_trust(ch));
 
-	write_to_buffer( d, "\n\r", 2 );
+	write_to_buffer( d, "Select a Hometown:\n\r", 0 );
+	for (i=0;hometown_table[i].name != NULL; ++i)
+	{
+	  sprintf(buf,"[%-15s]\n\r", hometown_table[i].name );
+	  write_to_buffer ( d, buf, 0);
+	}
+	
+	write_to_buffer( d, "\n\rWhat's your hometown? ", 0);
+	d->connected = CON_GET_HOMETOWN;
+	break;
+
+	case CON_GET_HOMETOWN:
+		if (get_hometown(argument) == -1)
+	{
+		write_to_buffer( d, "\n\rThat's not a valid selection.\n\r",0);
+		write_to_buffer( d, "Valid selections are:\n\r",0);
+	for (i=0;hometown_table[i].name != NULL; ++i)
+	{
+		sprintf(buf,"[%-15s]\n\r", hometown_table[i].name );
+		write_to_buffer( d, buf, 0 );
+	}
+		write_to_buffer( d, "\n\rWhat's your hometown? ", 0);
+		return;
+	}
+
+	ch->hometown = get_hometown(argument);
+
+/*	write_to_buffer( d, "\n\r", 2 );*/
 	write_to_buffer( d, "You may be good, neutral, or evil.\n\r",0);
 	write_to_buffer( d, "Which shall you be? ",0);
 	d->connected = CON_GET_ALIGNMENT;
@@ -2014,7 +2041,7 @@ case CON_GET_ALIGNMENT:
 	SET_BIT(ch->act,PLR_AUTOEXIT);  //geadin
 	SET_BIT( ch->act,PLR_COLOUR );  //geadin
 
-        group_add(ch,"rom basics",FALSE);
+     /*   group_add(ch,"rom basics",FALSE);
         group_add(ch,class_table[ch->class].base_group,FALSE);
         ch->pcdata->learned[gsn_recall] = 50;
 	write_to_buffer(d,"Do you wish to customize this character?\n\r",0);
@@ -2147,7 +2174,7 @@ case CON_DEFAULT_CHOICE:
         ,ch);
 
         do_function(ch, &do_help, "menu choice");
-        break;
+        break; */
 
     case CON_READ_IMOTD:
 	write_to_buffer(d,"\n\r",2);
@@ -2192,7 +2219,7 @@ case CON_DEFAULT_CHOICE:
 	    do_function (ch, &do_outfit,"");
 	    obj_to_char(create_object(get_obj_index(OBJ_VNUM_MAP),0),ch);
 
-	    char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
+	    char_to_room( ch, get_room_index( hometown_table[ch->hometown].school ) );
 	    send_to_char("\n\r",ch);
 	    do_function(ch, &do_help, "newbie info");
 	    send_to_char("\n\r",ch);

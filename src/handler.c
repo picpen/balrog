@@ -1944,8 +1944,11 @@ void extract_char( CHAR_DATA *ch, bool fPull )
     /* Death room is set in the clan tabe now */
     if ( !fPull )
     {
+    if (ch->clan)
         char_to_room(ch,get_room_index(clan_table[ch->clan].hall));
-	return;
+    else
+	char_to_room(ch, get_room_index(hometown_table[ch->hometown].death));
+    return;
     }
 
     if ( IS_NPC(ch) )
@@ -2754,8 +2757,8 @@ char *wear_bit_name(int wear_flags)
     if (wear_flags & ITEM_TAKE		) strcat(buf, " take");
     if (wear_flags & ITEM_WEAR_FINGER	) strcat(buf, " finger");
     if (wear_flags & ITEM_WEAR_NECK	) strcat(buf, " neck");
-    if (wear_flags & ITEM_WEAR_BODY	) strcat(buf, " torso");
     if (wear_flags & ITEM_WEAR_HEAD	) strcat(buf, " head");
+    if (wear_flags & ITEM_WEAR_BODY     ) strcat(buf, " torso");
     if (wear_flags & ITEM_WEAR_LEGS	) strcat(buf, " legs");
     if (wear_flags & ITEM_WEAR_FEET	) strcat(buf, " feet");
     if (wear_flags & ITEM_WEAR_HANDS	) strcat(buf, " hands");
@@ -3253,12 +3256,26 @@ int get_points( int race, int class )
 
 	if ( x == -1 )
 	{
-		bugf( "get_points : grupo %s inexistente, raza %d, clase %d",
+		bugf( "get_points : group %s doesn't exist, race %d, class %d",
 			class_table[class].default_group,
 			race, class );
 		return -1;
 	}
 
 	return group_table[x].rating[class] + race_table[race].points;
+}
+
+int get_hometown( char * argument )
+{
+	int i = 0;
+
+	while ( hometown_table[i].name != NULL)
+	{
+		if (!str_cmp(argument,hometown_table[i].name))
+		return i;
+	i++;
+	}
+	
+	return -1;
 }
 #endif

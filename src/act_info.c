@@ -381,7 +381,7 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
 	    strcat( buf, " is here." );               
 	break;
     case POS_FIGHTING:
-	strcat( buf, " is here, battling  " );
+	strcat( buf, " is here, battling " );
 	if ( victim->fighting == NULL )
 	    strcat( buf, "thin air??" );
 	else if ( victim->fighting == ch )
@@ -1436,7 +1436,7 @@ void do_score( CHAR_DATA *ch, char *argument )
 	race_table[ch->race].name,
 	ch->sex == 0 ? "sexless" : ch->sex == 1 ? "male" : "female",
  	IS_NPC(ch) ? "mobile" : class_table[ch->class].name);
-    send_to_char(buf,ch);
+        send_to_char(buf,ch);
 	
 
     sprintf( buf,
@@ -1493,7 +1493,8 @@ void do_score( CHAR_DATA *ch, char *argument )
     if ( !IS_NPC(ch) && ch->pcdata->condition[COND_THIRST] ==  0 )
 	send_to_char( "You are thirsty.\n\r", ch );
     if ( !IS_NPC(ch) && ch->pcdata->condition[COND_HUNGER]   ==  0 )
-	send_to_char( "You are hungry.\n\r",  ch );
+	send_to_char( "You are hungry.\n\r",  ch );  
+    
 
     switch ( ch->position )
     {
@@ -1612,12 +1613,12 @@ void do_score( CHAR_DATA *ch, char *argument )
 	send_to_char( buf, ch );
     }
     
-    if ( ch->level >= 10 )
+/*    if ( ch->level >= 10 )
     {
 	sprintf( buf, "Alignment: %d.  ", ch->alignment );
 	send_to_char( buf, ch );
     }
-
+*/
     send_to_char( "You are ", ch );
          if ( ch->alignment >  900 ) send_to_char( "angelic.\n\r", ch );
     else if ( ch->alignment >  700 ) send_to_char( "saintly.\n\r", ch );

@@ -1533,8 +1533,8 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
     {
 	if ( !remove_obj( ch, WEAR_ABOUT, fReplace ) )
 	    return;
-	act( "$n wears $p about $s torso.",   ch, obj, NULL, TO_ROOM );
-	act( "You wear $p about your torso.", ch, obj, NULL, TO_CHAR );
+	act( "$n wears $p about $s about $s body.",   ch, obj, NULL, TO_ROOM );
+	act( "You wear $p about your body.", ch, obj, NULL, TO_CHAR );
 	equip_char( ch, obj, WEAR_ABOUT );
 	return;
     }
@@ -1767,10 +1767,10 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 
     if ( arg[0] == '\0' || !str_cmp( arg, ch->name ) )
     {
-	act( "$n offers $mself to Mota, who graciously declines.",
+	act( "$n offers $mself to the Creator, who graciously declines.",
 	    ch, NULL, NULL, TO_ROOM );
 	send_to_char(
-	    "Mota appreciates your offer and may accept it later.\n\r", ch );
+	    "The Creator laughs at your offer but may accept it later.\n\r", ch );
 	return;
     }
 
@@ -1822,10 +1822,10 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 
     if (silver == 1)
         send_to_char(
-	    "Mota gives you one silver coin for your sacrifice.\n\r", ch );
+	    "The Creator gives you one silver coin for your sacrifice.\n\r", ch );
     else
     {
-	sprintf(buf,"Mota gives you %d silver coins for your sacrifice.\n\r",
+	sprintf(buf,"The Creator gives you %d silver coins for your sacrifice.\n\r",
 		silver);
 	send_to_char(buf,ch);
     }
@@ -1848,8 +1848,8 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    act( "$n sacrifices $p to Mota.", ch, obj, NULL, TO_ROOM );
-    wiznet("$N sends up $p as a burnt offering.",
+    act( "$n sacrifices $p to the Creator.", ch, obj, NULL, TO_ROOM );
+    wiznet("$N sends up $p as a burnt offering to $s Creator.",
 	   ch,obj,WIZ_SACCING,0,0);
     extract_obj( obj );
     return;
@@ -2006,7 +2006,7 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 	||   number_percent() >= 20 + get_skill(ch,gsn_staves) * 4/5)
  	{
 	    act ("You fail to invoke $p.",ch,staff,NULL,TO_CHAR);
-	    act ("...and nothing happens.",ch,NULL,NULL,TO_ROOM);
+	    act ("$n tries to invoke $p but fails.",ch,NULL,NULL,TO_ROOM);
 	    check_improve(ch,gsn_staves,FALSE,2);
 	}
 	
@@ -2615,7 +2615,7 @@ void do_buy( CHAR_DATA *ch, char *argument )
 	    pet->name = str_dup( buf );
 	}
 
-	sprintf( buf, "%sA neck tag says 'I belong to %s'.\n\r",
+	sprintf( buf, "%sA collar with a metal tag says 'I belong to %s'.\n\r",
 	    pet->description, ch->name );
 	free_string( pet->description );
 	pet->description = str_dup( buf );

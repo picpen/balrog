@@ -372,9 +372,9 @@ void show_olc_cmds( CHAR_DATA *ch )
 		return;
 	}
 
-	for (cmd = 0; tabla[cmd].nombre != NULL; cmd++)
+	for (cmd = 0; tabla[cmd].number != NULL; cmd++)
 	{
-		sprintf (buf, "%-15.15s", tabla[cmd].nombre);
+		sprintf (buf, "%-15.15s", tabla[cmd].number);
 		strcat (buf1, buf);
 		if (++col % 5 == 0)
 			strcat (buf1, "\n\r");
@@ -465,7 +465,7 @@ bool    edit_done (CHAR_DATA * ch)
 COMMAND(do_clear)
 
 	if (ch->desc->editor != ED_NONE)
-		send_to_char("Saliendo del editor.\n\r", ch);
+		send_to_char("Exiting the editor.\n\r", ch);
 	ch->desc->pEdit = NULL;
 	ch->desc->editor = ED_NONE;
 	ch->desc->pagina = 0;
@@ -731,7 +731,7 @@ void    do_aedit (CHAR_DATA * ch, char *argument)
 
 	if (!IS_BUILDER (ch, pArea) || ch->pcdata->security < 9)
 	{
-		send_to_char ("Insuficiente seguridad para editar areas.\n\r", ch);
+		send_to_char ("Invalid security for editing this area.\n\r", ch);
 		return;
 	}
 
@@ -755,19 +755,19 @@ void    do_redit (CHAR_DATA * ch, char *argument)
 	{
 		if (!IS_BUILDER (ch, pRoom->area))
 		{
-			send_to_char ("Insuficiente seguridad para modificar cuartos.\n\r", ch);
+			send_to_char ("Invalid security for editing this room.\n\r", ch);
 			return;
 		}
 
 		reset_room (pRoom);
-		send_to_char ("Cuarto reseteado.\n\r", ch);
+		send_to_char ("Room Reset.\n\r", ch);
 		return;
 	}
 	else if (!str_cmp (arg1, "create"))
 	{
 		if (argument[0] == '\0' || atoi (argument) == 0)
 		{
-			send_to_char ("Sintaxis : edit room create [vnum]\n\r", ch);
+			send_to_char ("Syntax : edit room create [vnum]\n\r", ch);
 			return;
 		}
 
@@ -785,14 +785,14 @@ void    do_redit (CHAR_DATA * ch, char *argument)
 
 		if ( pRoom == NULL )
 		{
-			send_to_char( "Cuarto inexistente.\n\r", ch );
+			send_to_char( "Room doesn't exist.\n\r", ch );
 			return;
 		}
 	}
 
 	if (!IS_BUILDER (ch, pRoom->area))
 	{
-		send_to_char ("Insuficiente seguridad para modificar cuartos.\n\r", ch);
+		send_to_char ("Invalid security for editing this room.\n\r", ch);
 		return;
 	}
 
@@ -840,7 +840,7 @@ void    do_oedit (CHAR_DATA * ch, char *argument)
 
 		if (!IS_BUILDER (ch, pObj->area))
 		{
-			send_to_char ("Insuficiente seguridad para modificar objetos.\n\r", ch);
+			send_to_char ("Invalid security for editing objects.\n\r", ch);
 			return;
 		}
 
@@ -870,7 +870,7 @@ void    do_oedit (CHAR_DATA * ch, char *argument)
 
 			if (!IS_BUILDER (ch, pArea))
 			{
-				send_to_char ("Insuficiente seguridad para modificar objetos.\n\r", ch);
+				send_to_char ("Invalid security for editing objects.\n\r", ch);
 				return;
 			}
 
@@ -910,7 +910,7 @@ void    do_medit (CHAR_DATA * ch, char *argument)
 
 		if (!IS_BUILDER (ch, pMob->area))
 		{
-			send_to_char ("Insuficiente seguridad para modificar mobs.\n\r", ch);
+			send_to_char ("Invalid security for editing mobs.\n\r", ch);
 			return;
 		}
 
@@ -940,7 +940,7 @@ void    do_medit (CHAR_DATA * ch, char *argument)
 
 			if (!IS_BUILDER (ch, pArea))
 			{
-				send_to_char ("Insuficiente seguridad para modificar mobs.\n\r", ch);
+				send_to_char ("Invalid security for editing mobs.\n\r", ch);
 				return;
 			}
 
@@ -1007,7 +1007,7 @@ void    display_resets (CHAR_DATA * ch, ROOM_INDEX_DATA * pRoom)
 				}
 
 				pMob = pMobIndex;
-				sprintf (buf, "M[%5d] %-13.13s en el suelo         R[%5d] %2d-%2d %-15.15s\n\r",
+				sprintf (buf, "M[%5d] %-13.13s on the ground         R[%5d] %2d-%2d %-15.15s\n\r",
 				   pReset->arg1, pMob->short_descr, pReset->arg3,
 				   pReset->arg2, pReset->arg4, pRoomIndex->name);
 				strcat (final, buf);
@@ -1106,7 +1106,7 @@ void    display_resets (CHAR_DATA * ch, ROOM_INDEX_DATA * pRoom)
 				if (pMob->pShop)
 				{
 					sprintf (buf,
-					   "O[%5d] %-13.13s en el inventario de S[%5d]       %-15.15s\n\r",
+					   "O[%5d] %-13.13s is in the inventory of S[%5d]       %-15.15s\n\r",
 					   pReset->arg1,
 					   pObj->short_descr,
 					   pMob->vnum,
@@ -1331,7 +1331,7 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 			{
 				if (get_mob_index (is_number (arg3) ? atoi (arg3) : 1) == NULL)
 				{
-					send_to_char ("Mob no existe.\n\r", ch);
+					send_to_char ("Mob doesn't exist.\n\r", ch);
 					return;
 				}
 				pReset = new_reset_data ();
@@ -1360,7 +1360,7 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 					if ((temp->item_type != ITEM_CONTAINER) &&
 					   (temp->item_type != ITEM_CORPSE_NPC))
 					{
-						send_to_char ("Objeto 2 no es container.\n\r", ch);
+						send_to_char ("Object 2 isn't a container.\n\r", ch);
 						return;
 					}
 					pReset = new_reset_data ();
@@ -1379,7 +1379,7 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 				{
 					if (get_obj_index (atoi (arg3)) == NULL)
 					{
-						send_to_char ("Vnum no existe.\n\r", ch);
+						send_to_char ("Vnum doesn't exist.\n\r", ch);
 						return;
 					}
 					pReset = new_reset_data ();
@@ -1404,7 +1404,7 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 					}
 					if (get_obj_index (atoi (arg3)) == NULL)
 					{
-						send_to_char ("Vnum no existe.\n\r", ch);
+						send_to_char ("Vnum doesn't exist.\n\r", ch);
 						return;
 					}
 					pReset = new_reset_data ();
@@ -1454,11 +1454,11 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 
 			if ( is_number(arg2) )
 			{
-				send_to_char(	"Sintaxis erronea.\n\r"
-						"Las posibilidades son :\n\r"
-						"reset anadir mob [vnum/nombre]\n\r"
-						"reset anadir obj [vnum/nombre]\n\r"
-						"reset anadir [nombre]\n\r", ch );
+				send_to_char(	"Syntax error.\n\r"
+						"The possibilities are :\n\r"
+						"reset add mob [vnum/name]\n\r"
+						"reset add obj [vnum/name]\n\r"
+						"reset add [name]\n\r", ch );
 				return;
 			}
 
@@ -1498,8 +1498,8 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 
 			if (found == 0)
 			{
-				printf_to_char(ch, "%s no encontrado en el area.\n\r",
-					(tvar == 0) ? "Mob/objeto" : ((tvar == 1) ? "Mob" : "Objeto") );
+				printf_to_char(ch, "%s isn't found in this area.\n\r",
+					(tvar == 0) ? "Mob/object" : ((tvar == 1) ? "Mob" : "Objeto") );
 				return;
 			}
 			pReset		= new_reset_data ();
@@ -1509,10 +1509,10 @@ void    do_resets (CHAR_DATA * ch, char *argument)
 			pReset->arg3	= ch->in_room->vnum;
 			pReset->arg4	= (tvar == 2) ? 0 : MAX_MOB;	/* Min # */
 
-			printf_to_char(ch, "Anadiendo reset del %s %d...", tvar == 1 ? "mob" : "objeto", found );
+			printf_to_char(ch,"Adding reset %s %d...", tvar == 1 ? "mob" : "object", found );
 			add_reset(ch->in_room, pReset, -1); // al final
 			SET_BIT(ch->in_room->area->area_flags, AREA_CHANGED);
-			send_to_char("hecho.\n\r", ch);
+			send_to_char("Done.\n\r", ch);
 		} // anadir
 	}
 
@@ -1567,21 +1567,21 @@ bool procesar_comando_olc( CHAR_DATA *ch, char *argument, const struct olc_comm_
 
 	argument = one_argument( argument, arg );
 
-	for ( temp = 0; tabla[temp].nombre; temp++ )
+	for ( temp = 0; tabla[temp].number; temp++ )
 	{
-		if ( LOWER(arg[0]) == LOWER(tabla[temp].nombre[0])
-		&&  !str_prefix(arg, tabla[temp].nombre) )
+		if ( LOWER(arg[0]) == LOWER(tabla[temp].number[0])
+		&&  !str_prefix(arg, tabla[temp].number) )
 		{
 			switch(ch->desc->editor)
 			{
 				case ED_MOBILE:
 				EDIT_MOB(ch, pMob);
 				tArea = pMob->area;
-				if (tabla[temp].argumento)
-					puntero = (void *) ((int) tabla[temp].argumento - (int) &xMob + (int) pMob);
+				if (tabla[temp].argument)
+					puntero = (void *) ((int) tabla[temp].argument - (int) &xMob + (int) pMob);
 				else
 					puntero = NULL;
-				if ( (*tabla[temp].funcion) (tabla[temp].nombre, ch, argument, puntero, tabla[temp].parametro )
+				if ( (*tabla[temp].function) (tabla[temp].number, ch, argument, puntero, tabla[temp].parameter )
 				     && tArea )
 					SET_BIT(tArea->area_flags, AREA_CHANGED);
 				return TRUE;
@@ -1590,11 +1590,11 @@ bool procesar_comando_olc( CHAR_DATA *ch, char *argument, const struct olc_comm_
 				case ED_OBJECT:
 				EDIT_OBJ(ch, pObj);
 				tArea = pObj->area;
-				if (tabla[temp].argumento)
-					puntero = (void *) ((int) tabla[temp].argumento - (int) &xObj + (int) pObj);
+				if (tabla[temp].argument)
+					puntero = (void *) ((int) tabla[temp].argument - (int) &xObj + (int) pObj);
 				else
 					puntero = NULL;
-				if ( (*tabla[temp].funcion) (tabla[temp].nombre, ch, argument, puntero, tabla[temp].parametro )
+				if ( (*tabla[temp].function) (tabla[temp].number, ch, argument, puntero, tabla[temp].parameter )
 				     && tArea != NULL )
 					SET_BIT(tArea->area_flags, AREA_CHANGED);
 				return TRUE;
@@ -1603,11 +1603,11 @@ bool procesar_comando_olc( CHAR_DATA *ch, char *argument, const struct olc_comm_
 				case ED_ROOM:
 				EDIT_ROOM(ch, pRoom);
 				tArea = pRoom->area;
-				if (tabla[temp].argumento)
-					puntero = (void *) ((int) tabla[temp].argumento - (int) &xRoom + (int) pRoom);
+				if (tabla[temp].argument)
+					puntero = (void *) ((int) tabla[temp].argument - (int) &xRoom + (int) pRoom);
 				else
 					puntero = NULL;
-				if ( (*tabla[temp].funcion) (tabla[temp].nombre, ch, argument, puntero, tabla[temp].parametro )
+				if ( (*tabla[temp].function) (tabla[temp].number, ch, argument, puntero, tabla[temp].parameter )
 				     && tArea != NULL )
 					SET_BIT(tArea->area_flags, AREA_CHANGED);
 				return TRUE;
@@ -1615,55 +1615,55 @@ bool procesar_comando_olc( CHAR_DATA *ch, char *argument, const struct olc_comm_
 
 				case ED_SKILL:
 				EDIT_SKILL(ch, pSkill);
-				if (tabla[temp].argumento)
-					puntero = (void *) ((int) tabla[temp].argumento - (int) &xSkill + (int) pSkill);
+				if (tabla[temp].argument)
+					puntero = (void *) ((int) tabla[temp].argument - (int) &xSkill + (int) pSkill);
 				else
 					puntero = NULL;
-				if ( (*tabla[temp].funcion) (tabla[temp].nombre, ch, argument, puntero, tabla[temp].parametro ) )
+				if ( (*tabla[temp].function) (tabla[temp].number, ch, argument, puntero, tabla[temp].parameter ) )
 					grabar_skills();
 				return TRUE;
 				break;
 
 				case ED_RACE:
 				EDIT_RACE(ch, pRace);
-				if (tabla[temp].argumento)
-					puntero = (void *) ((int) tabla[temp].argumento - (int) &xRace + (int) pRace);
+				if (tabla[temp].argument)
+					puntero = (void *) ((int) tabla[temp].argument - (int) &xRace + (int) pRace);
 				else
 					puntero = NULL;
-				if ( (*tabla[temp].funcion) (tabla[temp].nombre, ch, argument, puntero, tabla[temp].parametro ) )
+				if ( (*tabla[temp].function) (tabla[temp].number, ch, argument, puntero, tabla[temp].parameter ) )
 					grabar_razas();
 				return TRUE;
 				break;
 
 				case ED_PROG:
 				EDIT_PROG(ch, pProg);
-				if (tabla[temp].argumento)
-					puntero = (void *) ((int) tabla[temp].argumento - (int) &xProg + (int) pProg);
+				if (tabla[temp].argument)
+					puntero = (void *) ((int) tabla[temp].argument - (int) &xProg + (int) pProg);
 				else
 					puntero = NULL;
-				if ( (*tabla[temp].funcion) (tabla[temp].nombre, ch, argument, puntero, tabla[temp].parametro ) )
+				if ( (*tabla[temp].function) (tabla[temp].number, ch, argument, puntero, tabla[temp].parameter ) )
 					pProg->changed = TRUE;
 				return TRUE;
 				break;
 
 				case ED_CMD:
 				EDIT_CMD(ch, pCmd);
-				if (tabla[temp].argumento)
-					puntero = (void *) ((int) tabla[temp].argumento - (int) &xCmd + (int) pCmd);
+				if (tabla[temp].argument)
+					puntero = (void *) ((int) tabla[temp].argument - (int) &xCmd + (int) pCmd);
 				else
 					puntero = NULL;
-				if ( (*tabla[temp].funcion) (tabla[temp].nombre, ch, argument, puntero, tabla[temp].parametro ) )
+				if ( (*tabla[temp].function) (tabla[temp].number, ch, argument, puntero, tabla[temp].parameter ) )
 					grabar_tabla_comandos();
 				return TRUE;
 				break;
 
 				case ED_SOCIAL:
 				EDIT_SOCIAL(ch, pSoc);
-				if (tabla[temp].argumento)
-					puntero = (void *) ((int) tabla[temp].argumento - (int) &xSoc + (int) pSoc);
+				if (tabla[temp].argument)
+					puntero = (void *) ((int) tabla[temp].argument - (int) &xSoc + (int) pSoc);
 				else
 					puntero = NULL;
-				if ( (*tabla[temp].funcion) (tabla[temp].nombre, ch, argument, puntero, tabla[temp].parametro ) )
+				if ( (*tabla[temp].function) (tabla[temp].number, ch, argument, puntero, tabla[temp].parameter ) )
 					grabar_socials();
 				return TRUE;
 				break;
@@ -1683,13 +1683,13 @@ extern	void UpdateOLCScreen	(DESCRIPTOR_DATA *);
 	||  ch->desc == NULL
 	||  ch->desc->editor == ED_NONE )
 	{
-		send_to_char( "No estas editando nada.\n\r", ch );
+		send_to_char( "You aren't in an editor.\n\r", ch );
 		return;
 	}
 
 	if (!is_number(argument))
 	{
-		send_to_char( "A que pagina te quieres cambiar?\n\r", ch );
+		send_to_char( "What page do you want to change?\n\r", ch );
 		return;
 	}
 
@@ -1697,7 +1697,7 @@ extern	void UpdateOLCScreen	(DESCRIPTOR_DATA *);
 
 	if ( num <= 0 )
 	{
-		send_to_char( "No seas estupido.\n\r", ch );
+		send_to_char( "Don't be silly.\n\r", ch );
 		return;
 	}
 
@@ -1706,6 +1706,6 @@ extern	void UpdateOLCScreen	(DESCRIPTOR_DATA *);
 	InitScreen(ch->desc);
 	UpdateOLCScreen(ch->desc);
 
-	send_to_char( "Pagina cambiada. Si no ves nada, cambiate a otra.\n\r", ch );
+	send_to_char( "Page change. If you don't see anything, make changes to another.\n\r", ch );
 	return;
 }

@@ -42,12 +42,12 @@ static	char buf[MSL];
 	MPROG_LIST * list = *(MPROG_LIST **) point;
 
 	buf[0] = '\0';
-	strcat(buf, "Programas:\n\r");
+	strcat(buf, "Programs:\n\r");
 
 	for (cnt=0; list; list=list->next)
         {
               if (cnt ==0)
-                      strcat ( buf, "#UN  Vnum  Trigger Frase     #u\n\r" );
+                      strcat ( buf, "#UN  Vnum  Trigger Phrase     #u\n\r" );
 
               sprintf(tmpbuf, "%2d %5d %7.7s %s\n\r", cnt,
                      list->vnum, mprog_type_to_name(list->trig_type),
@@ -141,14 +141,14 @@ static char buf[MSL];
 	    if ((pexit = pexitarray[j]) == NULL)
 	    	continue;
 
-	    sprintf( tmpbuf, "-%-5.5s hacia [%5d] ",
+	    sprintf( tmpbuf, "-%-5.5s towards [%5d] ",
 		capitalize(dir_name[j]),
 		pexit->u1.to_room ? pexit->u1.to_room->vnum : 0 );
 	    strcat( buf, tmpbuf );
 
 	    if (pexit->key > 0)
 	    {
-	    	sprintf(tmpbuf, "Llave:%d ", pexit->key);
+	    	sprintf(tmpbuf, "Key:%d ", pexit->key);
 	    	strcat(buf, tmpbuf);
 	    }
 
@@ -218,9 +218,9 @@ static	char buf[MSL];
 	char tmpbuf[MIL];
 
 	sprintf( buf,
-	  "Ganancia al vender : %d%%\n\r"
-	  "Ganancia al comprar: %d%%\n\r"
-	  "Horas : %d hasta %d\n\r",
+	  "Income from selling : %d%%\n\r"
+	  "Profit from buying: %d%%\n\r"
+	  "Hours : %d to %d\n\r",
 		pShop->profit_buy, pShop->profit_sell,
 		pShop->open_hour, pShop->close_hour );
 
@@ -242,7 +242,7 @@ static	char buf[MSL];
 const struct olc_show_table_type redit_olc_show_table [] =
 {
 	{
-		"name",	&xRoom.name, "Nombre:", OLCS_STRING,
+		"name",	&xRoom.name, "Name:", OLCS_STRING,
 		1, 1, 40, 1, 1, NULL
 	},
 	{
@@ -286,7 +286,7 @@ const struct olc_show_table_type redit_olc_show_table [] =
 		1, 6, -1, 6, 1, NULL
 	},
 	{
-		"exitstag", NULL, "Salidas:", OLCS_TAG,
+		"exitstag", NULL, "Exits:", OLCS_TAG,
 		1, 12, -1, -1, 1, NULL
 	},
 	{
@@ -295,7 +295,7 @@ const struct olc_show_table_type redit_olc_show_table [] =
 	},
 	// pagina 2
 	{
-		"owner", &xRoom.owner, "Due~no:", OLCS_STRING,
+		"owner", &xRoom.owner, "Owner:", OLCS_STRING,
 		1, 1, 10, 1, 2, NULL
 	},
 	{
@@ -306,7 +306,7 @@ const struct olc_show_table_type redit_olc_show_table [] =
 const struct olc_show_table_type medit_olc_show_table [] =
 {
 	{
-		"name", &xMob.player_name, "Nombre:", OLCS_STRING,
+		"name", &xMob.player_name, "Name:", OLCS_STRING,
 		1, 1, 31, 1, 1, NULL
 	},
 	{
@@ -330,19 +330,19 @@ const struct olc_show_table_type medit_olc_show_table [] =
 		37, 2, 12, 1, 1, damtype2str
 	},
 	{
-		"sex", &xMob.sex, "Sexo   :", OLCS_STRFUNC,
+		"sex", &xMob.sex, "Sex   :", OLCS_STRFUNC,
 		58, 2, 1, 1, 1, sex2str
 	},
 	{
-		"group", &xMob.group, "Grupo:", OLCS_SHINT,
+		"group", &xMob.group, "Group:", OLCS_SHINT,
 		70, 2, 5, 1, 1, NULL
 	},
 	{
-		"race", &xMob.race, "Raza:", OLCS_STRFUNC,
+		"race", &xMob.race, "Race:", OLCS_STRFUNC,
 		1, 3, 10, 1, 1, race2str
 	},
 	{
-		"size", &xMob.size, "Tam:", OLCS_STRFUNC,
+		"size", &xMob.size, "size:", OLCS_STRFUNC,
 		17, 3, 5, 1, 1, size2str
 	},
 	{
@@ -354,11 +354,11 @@ const struct olc_show_table_type medit_olc_show_table [] =
 		43, 3, 6, 1, 1, NULL
 	},
 	{
-		"start_pos", &xMob.start_pos, "Pos ini:", OLCS_STRFUNC,
+		"start_pos", &xMob.start_pos, "Start Pos:", OLCS_STRFUNC,
 		58, 3, 4, 1, 1, pos2str
 	},
 	{
-		"default_pos", &xMob.default_pos, "def:", OLCS_STRFUNC,
+		"default_pos", &xMob.default_pos, "Def Pos:", OLCS_STRFUNC,
 		72, 3, 4, 1, 1, pos2str
 	},
 	{
@@ -439,7 +439,7 @@ const struct olc_show_table_type medit_olc_show_table [] =
 const struct olc_show_table_type oedit_olc_show_table [] =
 {
 	{
-		"name", &xObj.name, "Nombre:", OLCS_STRING,
+		"name", &xObj.name, "Name:", OLCS_STRING,
 		1, 1, 32, 1, 1, NULL
 	},
 	{
@@ -451,11 +451,11 @@ const struct olc_show_table_type oedit_olc_show_table [] =
 		68, 1, 5, 1, 1, NULL
 	},
 	{
-		"type", &xObj.item_type, "Tipo  :", OLCS_FLAGSTR_SHINT,
+		"type", &xObj.item_type, "Type  :", OLCS_FLAGSTR_SHINT,
 		1, 2, 11, 1, 1, type_flags
 	},
 	{
-		"level", &xObj.level, "Nivel:", OLCS_SHINT,
+		"level", &xObj.level, "Level:", OLCS_SHINT,
 		20, 2, 2, 1, 1, NULL
 	},
 	{
@@ -463,15 +463,15 @@ const struct olc_show_table_type oedit_olc_show_table [] =
 		29, 2, 3, 1, 1, NULL
 	},
 	{
-		"weight", &xObj.weight, "Peso:", OLCS_SHINT,
+		"weight", &xObj.weight, "Weight:", OLCS_SHINT,
 		56, 2, 5, 1, 1, NULL
 	},
 	{
-		"cost",	&xObj.cost, "Costo:", OLCS_INT,
+		"cost",	&xObj.cost, "Cost:", OLCS_INT,
 		68, 2, -1, 1, 1, NULL
 	},
 	{
-		"wear", &xObj.wear_flags, "Wear F:", OLCS_FLAGSTR_INT,
+		"wear", &xObj.wear_flags, "Wear:", OLCS_FLAGSTR_INT,
 		1, 3, 72, 1, 1, wear_flags
 	},
 	{

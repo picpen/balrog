@@ -709,9 +709,9 @@ void char_update( void )
 		    ch->was_in_room = ch->in_room;
 		    if ( ch->fighting != NULL )
 			stop_fighting( ch, TRUE );
-		    act( "$n disappears into the void.",
+		    act( "$n disappears into the abyss.",
 			ch, NULL, NULL, TO_ROOM );
-		    send_to_char( "You disappear into the void.\n\r", ch );
+		    send_to_char( "You disappear into the abyss.\n\r", ch );
 		    if (ch->level > 1)
 		        save_char_obj( ch );
 		    char_from_room( ch );
